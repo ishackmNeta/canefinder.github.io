@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Leaflet Map</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
+    </head>
+    <body>
+        <div id="map" style=" position:absolute; top:50; bottom:10; width:99.9%; border-width: 1px; border-style: solid; height: 100%; "></div>
+
+        <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+        <script>
+            var map = L.map('map').setView([-41.2858, 174.78682], 14);
+            mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+            L.tileLayer(
+                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; ' + mapLink + ' Contributors',
+                maxZoom: 18,
+            }).addTo(map);
+
+            var editableLayers = new L.FeatureGroup();
+
+            map.addLayer(editableLayers);
+
+            var drawPluginOptions = {
+                position: 'topright',
+                draw: {
+                    polygon: {
+                        allowIntersection: false, // Restricts shapes to simple polygons
+                        drawError: {
+                            color: '#e1e100', // Color the shape will turn when intersects
+                            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+                        },
+
+                        shapeOptions: {
+                           color: '#97009c'
+                        }
+                    },
+                    // disable toolbar item by setting it to false
+                    polyline: false,
+                    circle: false, // Turns off this drawing tool
+                    rectangle: false,
+                    marker: false,
+                },
+                edit: {
+                    featureGroup: editableLayers, //REQUIRED!!
+                    remove: false
+                }
+             };
+             var drawControl = new L.Control.Draw(drawPluginOptions);
+
+             <script type='application/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js'</script>       
+
+        </script>
+    </body>
+</html>
