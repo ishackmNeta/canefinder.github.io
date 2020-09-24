@@ -12,7 +12,7 @@
 
   </script>
 
-<link rel="stylesheet" href="leaflet.css" /> 
+  <link rel="stylesheet" href="leaflet.css" /> 
 
   <script src="leaflet.js"></script>
 
@@ -50,9 +50,6 @@
 
     <link rel="stylesheet" href="leaflet-legend.css"/>
     <script src="leaflet-legend.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
-
    
 
 
@@ -73,7 +70,7 @@
   <div id="map"></div>
   <div id='delete'></div>
   <a href='#' id='export' class="btn btn-success">Export Features</a>
-  
+
 </body>
 
 
@@ -121,7 +118,7 @@ function sugar(feature) {
  }
 
 
-  var kml = new L.GeoJSON.AJAX("unit2_polygon_oct.geojson",{
+  var kml = new L.GeoJSON.AJAX("unit2_polygon.geojson",{
          style:sugar, onEachFeature: kml_name});   
 
          kml.addTo(map);
@@ -135,9 +132,6 @@ function sugar(feature) {
         color: 'green'  //Outline color
     };
 }
-
-
-console.log((kml))
 
 
 var riverm = {
@@ -536,14 +530,7 @@ function addPopup(layer) {
             document.getElementById('export').setAttribute('href', 'data:' + convertedData);
             document.getElementById('export').setAttribute('download','data.geojson');
         }
-
-
-
-
-        
-
 </script>
-
 
 
 
