@@ -16,7 +16,6 @@
 
   <script src="leaflet.js"></script>
 
- 
 
 
 
@@ -504,9 +503,7 @@ map.on('draw:created', function (event) {
     props.desc = null;
     props.image = null;
     drawnItems.addLayer(layer);
-    //alert(layer.getLatLng())
     addPopup(layer);
-
 });
 
 function addPopup(layer) {
@@ -517,17 +514,9 @@ function addPopup(layer) {
     layer.on("popupopen", function () {
     	content.value = layer.feature.properties.desc;
       content.focus();
-
     });
     layer.bindPopup(content).openPopup();
-    alert(layer.getLatLng())
-    var data2 = drawnItems.toGeoJSON();
-
-
-    
 }
-
-
 
 
 
@@ -539,10 +528,10 @@ function addPopup(layer) {
         document.getElementById('export').onclick = function(e) {
             // Extract GeoJson from featureGroup
             var data = drawnItems.toGeoJSON();
-            
 
             // Stringify the GeoJson
             var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+            console.log(convertedData)
 
             // Create export
             document.getElementById('export').setAttribute('href', 'data:' + convertedData);
