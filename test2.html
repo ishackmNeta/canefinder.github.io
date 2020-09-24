@@ -75,6 +75,24 @@
 
   <script>
 
+    //OSM tiles attribution and URL
+		var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		var osmURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		var osmAttrib = '&copy; ' + osmLink;
+		
+		//Carto tiles attribution and URL
+		var cartoLink = '<a href="http://cartodb.com/attributions">CartoDB</a>';
+		var cartoURL = 'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png';
+		var cartoAttrib = '&copy; ' + osmLink + ' &copy; ' + cartoLink;
+
+		//Stamen Toner tiles attribution and URL
+		var stamenURL = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}';
+		var stamenAttrib = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+		//Creation of map tiles
+		var osmMap = L.tileLayer(osmURL, {attribution: osmAttrib});
+		var cartoMap = L.tileLayer(cartoURL, {attribution: cartoAttrib});
+
   // initialize the map
 
  
@@ -93,9 +111,9 @@
             );
             
   // load a tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  var original = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
     {
-      attribution: 'Tiles by <a href="http://mapc.org">MAPC</a>, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
       zoomControl: true,
       drawControl: true,
       preferCanvas: true
@@ -466,8 +484,14 @@ var overlayMaps = {
  
 };
 
+var baseLayers = {
+			"OSM Mapnik": osmMap,
+			"Stamen Toner": original
+		};
+	  
+		 //Add baseLayers to map as control layers
 
-L.control.layers(null, overlayMaps).addTo(map);
+L.control.layers(baseLayers, overlayMaps).addTo(map);
 
 
 
@@ -508,7 +532,17 @@ function addPopup(layer) {
       content.focus();
     });
     layer.bindPopup(content).openPopup();
-    alert(layer.getLatLng())
+    var ishack = (layer.getLatLng())
+    var lat = ([Object.values(ishack)[0]]); //returns 'someVal'
+    var long = ([Object.values(ishack)[1]]); //returns 'someVal'
+    var uae1 = lat.toString(2);
+    var uae2 = long.toString(2);
+    var cord = "Latitude <br> " + uae1 + " <br> Longitude <br> " + uae2
+    layer.bindTooltip(cord).openTooltip();
+
+
+    console.log(cord)
+
 }
 
 
