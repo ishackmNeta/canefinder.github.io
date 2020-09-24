@@ -16,6 +16,7 @@
 
   <script src="leaflet.js"></script>
 
+ 
 
 
 
@@ -50,6 +51,10 @@
 
     <link rel="stylesheet" href="leaflet-legend.css"/>
     <script src="leaflet-legend.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+    <script src="leaflet.browser.print.min.js"></script>
+
    
 
 
@@ -70,7 +75,7 @@
   <div id="map"></div>
   <div id='delete'></div>
   <a href='#' id='export' class="btn btn-success">Export Features</a>
-
+  
 </body>
 
 
@@ -118,7 +123,7 @@ function sugar(feature) {
  }
 
 
-  var kml = new L.GeoJSON.AJAX("unit2_polygon.geojson",{
+  var kml = new L.GeoJSON.AJAX("unit2_polygon_oct.geojson",{
          style:sugar, onEachFeature: kml_name});   
 
          kml.addTo(map);
@@ -132,6 +137,9 @@ function sugar(feature) {
         color: 'green'  //Outline color
     };
 }
+
+
+console.log((kml))
 
 
 var riverm = {
@@ -496,7 +504,9 @@ map.on('draw:created', function (event) {
     props.desc = null;
     props.image = null;
     drawnItems.addLayer(layer);
+    //alert(layer.getLatLng())
     addPopup(layer);
+
 });
 
 function addPopup(layer) {
@@ -507,9 +517,17 @@ function addPopup(layer) {
     layer.on("popupopen", function () {
     	content.value = layer.feature.properties.desc;
       content.focus();
+
     });
     layer.bindPopup(content).openPopup();
+    alert(layer.getLatLng())
+    var data2 = drawnItems.toGeoJSON();
+
+
+    
 }
+
+
 
 
 
@@ -521,16 +539,23 @@ function addPopup(layer) {
         document.getElementById('export').onclick = function(e) {
             // Extract GeoJson from featureGroup
             var data = drawnItems.toGeoJSON();
+            
 
             // Stringify the GeoJson
             var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-            console.log(convertedData)
 
             // Create export
             document.getElementById('export').setAttribute('href', 'data:' + convertedData);
             document.getElementById('export').setAttribute('download','data.geojson');
         }
+
+
+
+
+        
+
 </script>
+
 
 
 
