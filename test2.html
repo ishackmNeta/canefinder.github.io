@@ -131,11 +131,12 @@ function sugar(feature) {
 
 
   function kml_name(feature, layer) {
-  layer.bindPopup(feature.properties.Name);
+  layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage);
  }
 
 
-  var kml = new L.GeoJSON.AJAX("unit2_polygon.geojson",{
+  var kml = new L.GeoJSON.AJAX("unit2_kml_oct.geojson",{
          style:sugar, onEachFeature: kml_name});   
 
          kml.addTo(map);
