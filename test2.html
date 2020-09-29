@@ -146,7 +146,9 @@ var highlight = {
                 var arr = [];
                 kml.setStyle(sugar); //resets layer colors
                 layer.setStyle(highlight);  //highlights selected.
-               
+                var name = feature.properties.Name
+                arr.push(name);
+                alert(arr)
             }); 
 
  }
