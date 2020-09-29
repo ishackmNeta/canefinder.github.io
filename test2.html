@@ -136,9 +136,17 @@ var highlight = {
 	};
 
 
+  "Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage
+
+  var newpopup3 = L.popup({
+  closeOnClick: false,
+  autoClose: false
+}).setContent("popup3");
+
   function kml_name(feature, layer) {
-  layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
-  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage);
+  
+  layer.bindPopup(newpopup3);
 
  // initialize array
 
@@ -159,15 +167,7 @@ var highlight = {
          kml.addTo(map);
 
 
-let blob = new Blob(["test"]);
-let url = URL.createObjectURL(blob);
-let file = document.createElement(`a`);
-file.download = `ishack.txt`;
-file.href = url;
-document.body.appendChild(file);
-file.click();
-file.remove();
-URL.revokeObjectURL(url);
+
 
 
 
