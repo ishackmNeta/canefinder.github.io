@@ -129,10 +129,28 @@ function sugar(feature) {
     };
 }
 
+var highlight = {
+		'fillColor': 'yellow',
+		'weight': 2,
+		'opacity': 1
+	};
+
 
   function kml_name(feature, layer) {
   layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage);
+
+ // initialize array
+
+  layer.on("click", function (e) { 
+                var arr = [];
+                kml.setStyle(sugar); //resets layer colors
+                layer.setStyle(highlight);  //highlights selected.
+                var name = feature.properties.Name
+                arr.push(name);
+                alert(arr)
+            }); 
+
  }
 
 
@@ -141,15 +159,6 @@ function sugar(feature) {
 
          kml.addTo(map);
 
-
-
-
-         function sugar(feature) {
-    return {
-        fillColor: 'green',
-        color: 'green'  //Outline color
-    };
-}
 
 
 var riverm = {
