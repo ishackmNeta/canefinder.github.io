@@ -110,6 +110,8 @@
                 }
             );
             
+
+map.options.closePopupOnClick = false
   // load a tile layer
   var original = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
     {
@@ -139,7 +141,8 @@ var highlight = {
 
   function kml_name(feature, layer) {
   layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
-  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage, {closeButton: true, closeOnClick: true});
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false});
 
   
 
@@ -151,7 +154,6 @@ var highlight = {
                 layer.setStyle(highlight);  //highlights selected.
                 var name = feature.properties.Name
                 arr.push(name);
-                
             }); 
 
  }
