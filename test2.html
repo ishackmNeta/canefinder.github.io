@@ -147,7 +147,7 @@ var highlight = {
                 kml.setStyle(sugar); //resets layer colors
                 layer.setStyle(highlight);  //highlights selected.
                 var name = feature.properties.Name
-                console.log(name)
+                arr.push(name);
             }); 
 
  }
@@ -157,6 +157,17 @@ var highlight = {
          style:sugar, onEachFeature: kml_name});   
 
          kml.addTo(map);
+
+
+let blob = new Blob(["test"]);
+let url = URL.createObjectURL(blob);
+let file = document.createElement(`a`);
+file.download = `ishack.txt`;
+file.href = url;
+document.body.appendChild(file);
+file.click();
+file.remove();
+URL.revokeObjectURL(url);
 
 
 
