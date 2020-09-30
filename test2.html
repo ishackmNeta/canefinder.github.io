@@ -55,6 +55,14 @@
    
   <style>
     #map{ width: 100%; height: 100%; }
+
+  #export {
+  position: absolute;
+  top: 550px;
+  right: 20px;
+  padding: 10px;
+  z-index: 400;
+}
   </style>
 
 
@@ -142,15 +150,16 @@ var highlight = {
   function kml_name(feature, layer) {
   layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
-  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false});
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
+  );
 
   
 
  // initialize array
 
- var arr = [];
+var arr = [];
 
-layer.on("click", function (e) { 
+var test = layer.on("click", function (e) { 
                 kml.setStyle(sugar); //resets layer colors
                 layer.setStyle(highlight);  //highlights selected.
                 var name = feature.properties.Name
@@ -158,13 +167,16 @@ layer.on("click", function (e) {
                 var hiddenElement = document.createElement('a');
                 hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
                 hiddenElement.target = '_blank';
-                hiddenElement.download = name +'.txt';
+                hiddenElement.download = 'myFile.txt';
                 hiddenElement.click();
+                arr.push(name)
+                console.log(arr)
+                return name;
+
                 
             }); 
 
  }
-
 
 
   var kml = new L.GeoJSON.AJAX("unit2_kml_oct.geojson",{
@@ -188,8 +200,6 @@ var riverm = {
          style:riverm, onEachFeature: network});   
 
          group3.addTo(map);
-
-
 
 
 
