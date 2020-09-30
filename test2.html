@@ -169,7 +169,7 @@ var test = layer.on("click", function (e) {
                 var plotvillage = feature.properties.plotvillage
                 var time = new Date().toLocaleString();
                 var date = new Date().toLocaleDateString();
-                arr.push([name,ryot,ryotname,ryotvillage,plotvillage,time,date]);
+                arr.push([name,ryot,ryotname,ryotvillage,plotvillage,time]);
                 var person = prompt("Are you done?");
                 if (person == "yes") {
                 let csvContent = "data:text/csv;charset=utf-8," 
