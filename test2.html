@@ -164,7 +164,11 @@ var test = layer.on("click", function (e) {
                 layer.setStyle(highlight);  //highlights selected.
                 var name = feature.properties.Name
                 var ryot = feature.properties.ryot
-                arr.push([name,ryot]);
+                var time = new Date().toLocaleString();
+                var date = new Date().toLocaleDateString();
+                arr.push([name,ryot,time,date]);
+                var person = prompt("Are you done?");
+                if (person == "yes") {
                 let csvContent = "data:text/csv;charset=utf-8," 
                 + arr.map(e => e.join(",")).join("\n");
                 var encodedUri = encodeURI(csvContent);
@@ -175,6 +179,9 @@ var test = layer.on("click", function (e) {
                 console.log(arr)
                 link.click();
 
+  }
+
+                
 
 
 
