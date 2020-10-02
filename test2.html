@@ -580,7 +580,7 @@ var test = layer.on("click", function (e) {
 //test2
  
 function kml_name3(feature, layer) {
-  layer.bindPopup("Field ID:" + feature.properties.Name + feature.properties.visits + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  layer.bindPopup("Field ID:" + feature.properties.Name + '<br> Number of Visits:' + feature.properties.visits + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
@@ -608,13 +608,13 @@ var test = layer.on("click", function (e) {
 
  function getColor(d) {
     return d < 5 ? 'red' :
-           d < 10  ? '#BD0026' :
-           d < 14  ? '#ac4b1c' :
-           d < 18  ? '#FC4E2A' :
-           d < 20  ? '#FD8D3C' :
-           d < 25  ? '#FEB24C' :
-           d < 30  ? '#FED976' :
-                      '#FFEDA0';
+           d < 10  ? 'yellow' :
+           d < 14  ? 'pink' :
+           d < 18  ? 'blue' :
+           d < 20  ? 'black' :
+           d < 25  ? 'green' :
+           d < 30  ? 'purple' :
+                      'orang';
 }
 
 
