@@ -526,7 +526,7 @@ function kar(feature, layer) {
 //test
  
   function kml_name2(feature, layer) {
-  layer.bindPopup("Field ID:" + feature.properties.Name + feature.properties.status + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  layer.bindPopup("Field ID:" + feature.properties.Name + '<br> Status:' feature.properties.status + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
