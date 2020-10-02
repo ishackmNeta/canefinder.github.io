@@ -741,8 +741,11 @@ function addPopup(layer) {
         }
 
 
-     
- 
+        map.on("contextmenu", function (event) {
+  alert("Coordinates: " + event.latlng.toString());
+});
+
+
 </script>
 
 
