@@ -526,7 +526,7 @@ function kar(feature, layer) {
 //test
  
   function kml_name2(feature, layer) {
-  layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  layer.bindPopup("Field ID:" + feature.properties.Name + feature.properties.status + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
@@ -550,20 +550,96 @@ var test = layer.on("click", function (e) {
  }
 
 
+
+
+
  function sugar1(feature) {
     return {
-        fillColor: 'red',
-        color: 'red',  
-        fillOpacity: 0.2
+        fillColor: feature.properties.status,
+        color: feature.properties.status,  
+        fillOpacity: 0.4
 
     };
 }
 
 
-  var kml2 = new L.GeoJSON.AJAX("unit2_kml_oct.geojson",{
+
+
+// test2
+
+
+  var kml2 = new L.GeoJSON.AJAX("unit2_kml_oct_v2.geojson",{
          style:sugar1, onEachFeature: kml_name2});   
 
          kml2.addTo(map);
+
+
+
+
+
+//test2
+ 
+function kml_name3(feature, layer) {
+  layer.bindPopup("Field ID:" + feature.properties.Name + feature.properties.visits + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
+  );
+
+  
+
+ // initialize array
+
+
+
+var test = layer.on("click", function (e) {
+                kml.setStyle(sugar); //resets layer colors
+                
+                
+
+
+
+                
+            }); 
+
+ }
+
+
+
+
+ function getColor(d) {
+    return d < 5 ? 'red' :
+           d < 10  ? '#BD0026' :
+           d < 14  ? '#ac4b1c' :
+           d < 18  ? '#FC4E2A' :
+           d < 20  ? '#FD8D3C' :
+           d < 25  ? '#FEB24C' :
+           d < 30  ? '#FED976' :
+                      '#FFEDA0';
+}
+
+
+function ishack(feature) {
+    return {
+        fillColor: getColor(feature.properties.visits),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+
+
+
+// test2
+
+
+  var kml3 = new L.GeoJSON.AJAX("test2.geojson",{
+         style:ishack, onEachFeature: kml_name3});   
+
+         kml3.addTo(map);
+
 
 
 
@@ -579,6 +655,8 @@ var overlayMaps = {
     "<img src='road.png' /> Major Road Network": roads,
     "<img src='' /> Waterbodies": waterbodies,
     "<img src='' /> kml2": kml2,
+    "<img src='' /> kml3": kml3,
+    "<img src='' /> kml": kml,
     "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
     
  
