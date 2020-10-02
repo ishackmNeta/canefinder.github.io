@@ -170,7 +170,8 @@ var test = layer.on("click", function (e) {
                 var time = new Date().toLocaleString();
                 var date = new Date().toLocaleDateString();
                 arr.push([name,ryot,ryotname,ryotvillage,plotvillage,time]);
-                var person = prompt("Are you done finishing collecting data?");
+                var nkml = arr.length - 1; 
+                var person = prompt("Are you done finishing collecting data?" + " Number of plots visited/to visit today:" + nkml);
                 if (person == "yes") {
                 let csvContent = "data:text/csv;charset=utf-8," 
                 + arr.map(e => e.join(",")).join("\n");
