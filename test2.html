@@ -523,6 +523,50 @@ function kar(feature, layer) {
 
   waterbodies.addTo(map);
 
+//test
+ 
+  function kml_name2(feature, layer) {
+  layer.bindPopup("Field ID:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
+  );
+
+  
+
+ // initialize array
+
+
+
+var test = layer.on("click", function (e) {
+                kml.setStyle(sugar); //resets layer colors
+                
+                
+
+
+
+                
+            }); 
+
+ }
+
+
+ function sugar1(feature) {
+    return {
+        fillColor: 'red',
+        color: 'red',  
+        fillOpacity: 0.2
+
+    };
+}
+
+
+  var kml2 = new L.GeoJSON.AJAX("unit2_kml_oct.geojson",{
+         style:sugar1, onEachFeature: kml_name2});   
+
+         kml2.addTo(map);
+
+
+
 
 var overlayMaps = {
     "<img src='purple.png' /> Trident Main River": group1,
@@ -534,6 +578,7 @@ var overlayMaps = {
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
     "<img src='' /> Waterbodies": waterbodies,
+    "<img src='' /> kml2": kml2,
     "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
     
  
@@ -621,7 +666,13 @@ function addPopup(layer) {
         }
 
 
-       
+        map.on('click', function(e){
+  var coord = e.latlng;
+  var lat = coord.lat;
+  var lng = coord.lng;
+  alert("You clicked the map at Latitude: " + lat + " and Longitude: " + lng);
+  });
+      
 </script>
 
 
