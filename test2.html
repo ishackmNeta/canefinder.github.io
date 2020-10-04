@@ -740,7 +740,9 @@ function addPopup(layer) {
 
 
         map.on("contextmenu", function (event) {
-  alert("Coordinates: " + event.latlng.toString());
+  console.log("Coordinates: " + event.latlng.toString());
+  L.marker(event.latlng).bindPopup(event.latlng.toString())
+.addTo(map);
 });
 
 
