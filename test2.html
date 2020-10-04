@@ -739,11 +739,9 @@ function addPopup(layer) {
         }
 
 
-        map.on("contextmenu", function (event) {
+  map.on("contextmenu", function (event) {
   console.log("Coordinates: " + event.latlng.toString());
-  L.marker(event.latlng).bindPopup(event.latlng.toString())
-.addTo(map);
-});
+  L.marker(event.latlng).bindPopup(event.latlng.toString()).addTo(map);});
 
 
 </script>
