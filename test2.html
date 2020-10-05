@@ -572,7 +572,7 @@ var test = layer.on("click", function (e) {
   var kml2 = new L.GeoJSON.AJAX("unit2_kml_oct_v2.geojson",{
          style:sugar1, onEachFeature: kml_name2});   
 
-         //kml2.addTo(map);
+         kml2.addTo(map);
 
 
 
@@ -636,7 +636,7 @@ function ishack(feature) {
   var kml3 = new L.GeoJSON.AJAX("test2.geojson",{
          style:ishack, onEachFeature: kml_name3});   
 
-         //kml3.addTo(map);
+         kml3.addTo(map);
 
 
 
@@ -651,6 +651,8 @@ var overlayMaps = {
     "<img src='images/marker-icon.png' /> Borewells": bore,
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
+    "<img src='' /> Sugarcane Plot Status": kml2,
+    "<img src='' /> Number of Visits": kml3,
     "<img src='' /> Waterbodies": waterbodies,
     "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
     
