@@ -367,59 +367,6 @@ $.getJSON("borewell.geojson",function(data){
   }).addTo(bore);
 });
 
-// sunkenpits
-
-
-var sunkenpits = L.geoJSON().addTo(map);
-$.getJSON("sp2.geojson",function(data){
-    var ratIcon = L.icon({
-    iconUrl: 'dig.png',
-    shadowUrl: 'dig.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  }); 
-
-    L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup("Sunken Pit" +'<br>' + 'SI_No:'+feature.properties.si + '<br>'+ feature.properties.volume +'<br>' + 'Date of Construction:' + feature.properties.date + '<br>');
-      return marker;
-    }
-  }).addTo(sunkenpits);
-});
-
-
-
-
-// water structure
-
-
-var dam = L.geoJSON().addTo(map);
-$.getJSON("dam.geojson",function(data){
-    var ratIcon = L.icon({
-    iconUrl: 'dam.png',
-    shadowUrl: 'dam.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  }); 
-
-    L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(village + '<br>' + 'S_No:' + feature.properties.s_no + '<br>' + 'Activity: ' + feature.properties.activity + '</br>' + 'Volume: ' + feature.properties.volume + '</br>' + 'Length: ' + feature.properties.length + 'm</br>'+ 'Width: ' + feature.properties.width + 'm</br>' + 'Depth: ' + feature.properties.depth + 'm</br>');
-      return marker;
-    }
-  }).addTo(dam);
-});
-
-//
-
-
-
 
 function tb(feature) {
     return {
@@ -623,15 +570,12 @@ var overlayMaps = {
     "<img src='yellow.png' /> Narinjavagu River": group2,
     "<img src='orange.png' /> Stream Network 2 Hectare": group3,
     "<img src='red.png' /> Village": group4,
-    "<img src='dig.png' /> Sunken Pits": sunkenpits,
     "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png' /> Borewells":bore,
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
-    "<img src='' /> Waterbodies": waterbodies,
-    "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
-    
+    "<img src='' /> Waterbodies": waterbodies    
  
 };
 
