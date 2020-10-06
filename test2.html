@@ -31,7 +31,6 @@
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="sp2.geojson"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     
@@ -584,42 +583,46 @@ function ishack(feature) {
 // test2
 
 
+
   var kml3 = new L.GeoJSON.AJAX("test2.geojson",{
          style:ishack, onEachFeature: kml_name3});   
 
          kml3.addTo(map);
+         
+         
+         
+        
 
-    
-// sp
+      var baseballIcon = L.icon({
+      iconUrl: 'dig.png',
+      iconSize: [32, 37],
+      iconAnchor: [16, 37],
+      popupAnchor: [0, -28]
+});
 
-  var ratIcon = L.icon({
-    iconUrl: 'dig.png',
-    iconSize: [60,50]
-  });
+var sp = L.geoJSON().addTo(map);
 
-  sp = L.geoJSON([sp], {style : function(feature) {},
-      pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(feature.properties.si + '<br/>' + feature.properties.volume);
-      return marker;
-}
-}).addTo(map);
-          
-
-
-
-
+new L.GeoJSON.AJAX("sp2.geojson",{
+                                middleware:function(data){
+                                   return L.geoJson(data, {
+                                      onEachFeature: function (feature, layer) {
+                                        layer.setIcon(baseballIcon);
+                                        layer.bindPopup("india")
+                                      }
+                                    }).addTo(sp);
+                                }
+                            });
 
 var overlayMaps = {
     "<img src='purple.png' /> Trident Main River": group1,
     "<img src='yellow.png' /> Narinjavagu River": group2,
     "<img src='orange.png' /> Stream Network 2 Hectare": group3,
     "<img src='red.png' /> Village": group4,
+    "<img src='dig.png' /> Sunken Pits": sp,
     "<img src='images/marker-icon.png' /> Borewells": bore,
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
     "<img src='' /> Waterbodies": waterbodies,
-    "<img src='dig.png' /> Sunken Pits": sp,
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
     "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
@@ -711,7 +714,7 @@ function addPopup(layer) {
   ("Coordinates: " + event.latlng.toString());
   
   L.marker(event.latlng).bindPopup(event.latlng.toString()).addTo(map);});
-
+     
 </script>
 
 
