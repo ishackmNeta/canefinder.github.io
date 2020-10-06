@@ -1,11 +1,6 @@
 <html>
 <head>
   <title>Neta Map</title>
-
-  <script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
   
   <script>
     function myFunction() {
@@ -29,10 +24,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
-  
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet-src.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="sp2.geojson"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     
@@ -514,25 +513,6 @@ var test = layer.on("click", function (e) {
     };
 }
 
-var sp = L.geoJSON().addTo(map);
-jQuery.getJSON("sp2.geojson",function(data){
-  var ratIcon = L.icon({
-    iconUrl: 'dig.png',
-    shadowUrl: 'dig.png',
-    iconSize: [40, 60],
-    shadowSize: [60, 40],
-    iconAnchor: [20, 60],
-    shadowAnchor: [20, 40],
-    popupAnchor: [0, -53]
-  });
-  L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup("Sunken Pit" + '<br>' + 'SI_No:' + feature.properties.si + '<br> Volume:' + feature.properties.volume + '<br> Date of Construction:' + feature.properties.date );
-      return marker;
-    }
-  }).addTo(sp);
-});
 
 // test2
 
@@ -618,7 +598,6 @@ var overlayMaps = {
     "<img src='yellow.png' /> Narinjavagu River": group2,
     "<img src='orange.png' /> Stream Network 2 Hectare": group3,
     "<img src='red.png' /> Village": group4,
-    "<img src='dig.png' /> Sunken Pits": sp,
     "<img src='images/marker-icon.png' /> Borewells": bore,
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
@@ -714,6 +693,21 @@ function addPopup(layer) {
   ("Coordinates: " + event.latlng.toString());
   
   L.marker(event.latlng).bindPopup(event.latlng.toString()).addTo(map);});
+
+// sp
+
+  var ratIcon = L.icon({
+    iconUrl: 'dig.png',
+    iconSize: [60,50]
+  });
+
+  L.geoJSON([sp], {style : function(feature) {},
+      pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng,{icon: ratIcon});
+      marker.bindPopup(feature.properties.si + '<br/>' + feature.properties.volume);
+      return marker;
+}
+}).addTo(map);
      
 </script>
 
