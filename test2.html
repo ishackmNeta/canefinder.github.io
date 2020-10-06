@@ -740,13 +740,11 @@ function addPopup(layer) {
         }
 
 
-        map.on('click', function(e){
-  var coord = e.latlng;
-  var lat = coord.lat;
-  var lng = coord.lng;
-  alert("You clicked the map at Latitude: " + lat + " and Longitude: " + lng);
-  });
-      
+        map.on("contextmenu", function (event) {
+  ("Coordinates: " + event.latlng.toString());
+  
+  L.marker(event.latlng).bindPopup(event.latlng.toString()).addTo(map);});
+     
 </script>
 
 
