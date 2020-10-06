@@ -589,6 +589,23 @@ function ishack(feature) {
 
          kml3.addTo(map);
 
+    
+// sp
+
+  var ratIcon = L.icon({
+    iconUrl: 'dig.png',
+    iconSize: [60,50]
+  });
+
+  sp = L.geoJSON([sp], {style : function(feature) {},
+      pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng,{icon: ratIcon});
+      marker.bindPopup(feature.properties.si + '<br/>' + feature.properties.volume);
+      return marker;
+}
+}).addTo(map);
+          
+
 
 
 
@@ -602,6 +619,7 @@ var overlayMaps = {
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
     "<img src='' /> Waterbodies": waterbodies,
+    "<img src='dig.png' /> Sunken Pits": sp,
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
     "<img src='dam.png' /> Check Dams/Percolation Tanks": dam
@@ -694,21 +712,6 @@ function addPopup(layer) {
   
   L.marker(event.latlng).bindPopup(event.latlng.toString()).addTo(map);});
 
-// sp
-
-  var ratIcon = L.icon({
-    iconUrl: 'dig.png',
-    iconSize: [60,50]
-  });
-
-  L.geoJSON([sp], {style : function(feature) {},
-      pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(feature.properties.si + '<br/>' + feature.properties.volume);
-      return marker;
-}
-}).addTo(map);
-     
 </script>
 
 
