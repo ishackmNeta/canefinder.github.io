@@ -51,3 +51,12 @@ $.getJSON("dam.geojson",function(data){
 //
 
 
+new L.GeoJSON.AJAX("uganda.geojson",{
+  middleware:function(data){
+     return L.geoJson(data, {
+        onEachFeature: function (feature, layer) {
+          layer.setIcon(baseballIcon), layer.bindPopup(feature.properties.volume);
+        }
+      }).addTo(sp);
+  }
+});

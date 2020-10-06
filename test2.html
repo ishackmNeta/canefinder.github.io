@@ -432,7 +432,10 @@ function basin(feature, layer) {
          uganda.addTo(map);
 
 
-
+         function mps(feature, layer) {
+           var val = (feature.properties.volume)
+           layer.bindPopup(val);
+ }
 
 
 
@@ -481,6 +484,7 @@ function kar(feature, layer) {
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
 
+  
   
 
  // initialize array
@@ -534,7 +538,7 @@ function kml_name3(feature, layer) {
   );
 
   
-
+  
  // initialize array
 
 
@@ -593,32 +597,47 @@ function ishack(feature) {
          
         
 
-      var baseballIcon = L.icon({
+      var sp_icon = L.icon({
       iconUrl: 'dig.png',
       iconSize: [32, 37],
       iconAnchor: [16, 37],
       popupAnchor: [0, -28]
 });
 
-var sp = L.geoJSON().addTo(map);
 
-new L.GeoJSON.AJAX("sp2.geojson",{
-                                middleware:function(data){
-                                   return L.geoJson(data, {
-                                      onEachFeature: function (feature, layer) {
-                                        layer.setIcon(baseballIcon);
-                                        layer.bindPopup("india")
-                                      }
-                                    }).addTo(sp);
-                                }
-                            });
+var kml3 = new L.GeoJSON.AJAX("test2.geojson",{
+         style:ishack, onEachFeature: kml_name3});   
+
+         kml3.addTo(map);
+         
+
+
+
+
+
+         function onEachFeature1(feature, layer) {
+  layer.bindPopup('S_No:' + feature.properties.si + '<br>' + 'Volume:' + feature.properties.volume + ' m3</br>'+ 'Date of Construction:' + feature.properties.date );
+}
+
+test = new L.GeoJSON.AJAX("sp3.geojson", {
+  pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {icon: sp_icon});
+    },
+  onEachFeature: onEachFeature1
+}).addTo(map);
+
+
+
+
+  
+
 
 var overlayMaps = {
     "<img src='purple.png' /> Trident Main River": group1,
     "<img src='yellow.png' /> Narinjavagu River": group2,
     "<img src='orange.png' /> Stream Network 2 Hectare": group3,
     "<img src='red.png' /> Village": group4,
-    "<img src='dig.png' /> Sunken Pits": sp,
+    "<img src='dig.png' /> Sunken Pits": test,
     "<img src='images/marker-icon.png' /> Borewells": bore,
     "<img src='pink.png' /> Trident Basin": uganda,
     "<img src='road.png' /> Major Road Network": roads,
