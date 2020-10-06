@@ -181,7 +181,6 @@ var test = layer.on("click", function (e) {
                 var filename = date + '.csv'
                 link.setAttribute("download", filename);
                 document.body.appendChild(link); // Required for FF
-                console.log(arr)
                 link.click();
 
   }
@@ -718,7 +717,6 @@ function addPopup(layer) {
     layer.bindTooltip(cord).openTooltip();
 
 
-    console.log(cord)
 
 }
 
@@ -735,7 +733,6 @@ function addPopup(layer) {
 
             // Stringify the GeoJson
             var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
-            console.log(convertedData)
 
             // Create export
             document.getElementById('export').setAttribute('href', 'data:' + convertedData);
