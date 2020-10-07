@@ -740,7 +740,6 @@ function addPopup(layer) {
         }
 
 	  
-	    var temp = L.geoJSON().addTo(map);
 
 	  
 	  var red = new L.Icon({
@@ -754,13 +753,12 @@ function addPopup(layer) {
 
         map.on("contextmenu", function (event) {
   ("Coordinates: " + event.latlng.toString());
-  L.marker(event.latlng,{icon:red}).bindPopup(event.latlng.toString()).addTo(temp);});
+  L.marker(event.latlng,{icon:red}).bindPopup(event.latlng.toString()).addTo(map);});
 	  
 	  
 	  
 	  
 
-console.log(temp)
 
 
 
