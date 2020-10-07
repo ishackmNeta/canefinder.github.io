@@ -328,7 +328,7 @@ function onEachFeature4(feature, layer) {
 }
 
 
-dam = new L.GeoJSON.AJAX("dam.geojson", {
+dam = new L.GeoJSON.AJAX("https://srv-file7.gofile.io/downloadStore/srv-store3/Q4yDRG/dam.geojson", {
   pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: myIcon});
     },
