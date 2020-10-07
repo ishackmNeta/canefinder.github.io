@@ -740,6 +740,9 @@ function addPopup(layer) {
         }
 
 	  
+	    var temp = L.geoJSON().addTo(map);
+
+	  
 	  var red = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -751,11 +754,13 @@ function addPopup(layer) {
 
         map.on("contextmenu", function (event) {
   ("Coordinates: " + event.latlng.toString());
-  var temp = L.geoJSON().addTo(map);
   L.marker(event.latlng,{icon:red}).bindPopup(event.latlng.toString()).addTo(temp);});
-  console.log(temp)	  
+	  
+	  
+	  
+	  
 
-
+console.log(temp)
 
 
 
