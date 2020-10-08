@@ -576,14 +576,12 @@ var test = layer.on("click", function (e) {
 
 
 function getColor2(d) {
-    return d < 5 ? 'pink' :
-           d < 10  ? '#BD0026' :
-           d < 14  ? '#ac4b1c' :
-           d < 18  ? '#FC4E2A' :
-           d < 20  ? '#FD8D3C' :
-           d < 25  ? '#FEB24C' :
-           d < 30  ? '#FED976' :
-                      '#FFEDA0';
+    return d < 5 ? '#f9d276' :
+           d < 15  ? '#BD0026' :
+           d < 25  ? '#ad1d45' :
+           d < 30  ? '#83142c' :
+           d < 35  ? '#44000d' :
+                     '#FFEDA0';
 }
 
 function ishack(feature) {
@@ -604,7 +602,7 @@ function ishack(feature) {
 
 
 
-  var kml3 = new L.GeoJSON.AJAX("http://127.0.0.1:5000/static/test2.geojson",{
+  var kml3 = new L.GeoJSON.AJAX("test2.geojson",{
          style:ishack, onEachFeature: kml_name3});   
 
          kml3.addTo(map);
@@ -665,7 +663,7 @@ bore = new L.GeoJSON.AJAX("borewell.geojson", {
 
 // number of re
 
-var re = new L.GeoJSON.AJAX("http://127.0.0.1:5000/static/re.geojson", {
+var re = new L.GeoJSON.AJAX("re.geojson", {
   pointToLayer: function(feature,latlng){
     label = feature.properties.title + "<br> Number of Rural Entreprenuers:" + String(feature.properties.field)  // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
     id = Number(feature.properties.field) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
