@@ -1,4 +1,7 @@
 <html>
+
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="-1">
 <head>
   <title>Neta Geo App</title>
   
@@ -663,7 +666,7 @@ bore = new L.GeoJSON.AJAX("borewell.geojson", {
 
 // number of re
 
-var re = new L.GeoJSON.AJAX("re.geojson", {
+var re = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/re.geojson", {
   pointToLayer: function(feature,latlng){
     label = feature.properties.title + "<br> Number of Rural Entreprenuers:" + String(feature.properties.field)  // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
     id = Number(feature.properties.field) // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
