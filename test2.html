@@ -314,6 +314,28 @@ var myIcon = L.icon({
   popupAnchor: [0, -28]
 });
 
+var sugar = L.icon({
+  iconUrl: 'wheat.svg',
+  iconSize: [32, 37],
+  iconAnchor: [16, 37],
+  popupAnchor: [0, -28]
+});
+
+var other = L.icon({
+  iconUrl: 'wheat.svg',
+  iconSize: [32, 37],
+  iconAnchor: [16, 37],
+  popupAnchor: [0, -28]
+});
+
+var intercrop = L.icon({
+  iconUrl: 'wheat.svg',
+  iconSize: [32, 37],
+  iconAnchor: [16, 37],
+  popupAnchor: [0, -28]
+});
+
+
 
 var village = "Village: Kothoor B"
 
@@ -322,7 +344,7 @@ function onEachFeature4(feature, layer) {
 }
 
 
-dam = new L.GeoJSON.AJAX("https://srv-file7.gofile.io/downloadStore/srv-store3/Q4yDRG/dam.geojson", {
+dam = new L.GeoJSON.AJAX("dam.geojson", {
   pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: myIcon});
     },
@@ -330,6 +352,15 @@ dam = new L.GeoJSON.AJAX("https://srv-file7.gofile.io/downloadStore/srv-store3/Q
 }).addTo(map);
 
 
+// soil
+
+soil = new L.GeoJSON.AJAX("soil_samples2.geojson", {
+  pointToLayer: function (feature, latlng) {
+            id = sugar // Must convert to string, .bindTooltip can't use straight 'feature.properties.attribute'
+            return L.marker(latlng,{icon:id});
+    },
+  //onEachFeature: onEachFeature4
+})//.addTo(map);
 
 
 
@@ -398,11 +429,6 @@ function basin(feature, layer) {
 
          uganda.addTo(map);
 
-
-         function mps(feature, layer) {
-           var val = (feature.properties.volume)
-           layer.bindPopup(val);
- }
 
 
 
