@@ -233,15 +233,15 @@ var highlight = {
 		'opacity': 1
 	};
 
-
-// popup function
-  function kml_name(feature, layer) {
-  layer.bindPopup("Plot Code:" + feature.properties.Name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  function kml_nam(feature, layer) {
+  layer.bindPopup("Plot Code:" + feature.properties.new_name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
 
-  
+
+
+
 
  // initialize array and export csv
 
@@ -281,7 +281,7 @@ var test = layer.on("click", function (e) {
  }
 // add geojson to map
   var kml = new L.GeoJSON.AJAX("data/unit2_kml_oct.geojson",{
-         style:sugar, onEachFeature: kml_name});   
+         style:sugar, onEachFeature: kml_nam});   
 
 // add streamnetwork geojson
 
@@ -650,11 +650,14 @@ function kar(feature, layer) {
 
 // add Number of Visits geojson (Fake Data)
  
+
 function kml_name3(feature, layer) {
-  layer.bindPopup("Field ID:" + feature.properties.Name + feature.properties.visits + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  layer.bindPopup("Plot Code:" + feature.properties.new_name + '<br> Number of Visits:' + feature.properties.visits + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
   + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
+
+
 
   
 var test = layer.on("click", function (e) {
@@ -835,7 +838,7 @@ L.control.layers(baseLayers, overlayMaps).addTo(map);
 
 
 
-// search by plot code, ryot code and village name
+// search by  code, ryot code and village name
 var test = L.layerGroup([kml,group4,kml2]);
 
 // L.Control.Search
