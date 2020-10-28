@@ -319,17 +319,10 @@ function polystyle(feature) {
 
 
 function village(feature, layer) {
-  layer.bindPopup('<div class="tabs">' +'<div class="tab" id="tab-1">' +'<div class="content">' +'<b>Tab 1 content</b>' +'</div>' +'</div>' +
-'<div class="tab" id="tab-2">' +'<div class="content">' 
-+ feature.properties.Name +'<br>'+ feature.properties.vi + '</br>' +'</div>' +'</div>' +
-'<div class="tab" id="tab-3">' +'<div class="content">' +'<b>Tab 3 content</b>' +'</div>' +'</div>' +
-
-'<ul class="tabs-link">' +
-'<li class="tab-link"> <a href="tab-1"><span>test1</span></a></li>' +
-'<li class="tab-link"> <a href="tab-2"><span>Tab 2</span></a></li>' +
-'<li class="tab-link"> <a href="tab-3"><span>Tab 3</span></a></li>' +
-'</ul>' +
-'</div>' );
+  layer.bindPopup('<dl> <b>Village Information</b> <dd> Village Name:'+ feature.properties.Name +'</dd>Village ID:'+ feature.properties.vi 
+  +'</dd> <dd> Village Area:'+ feature.properties.vi + '</dd>'
+  +'</dd> <dt>Sugarcane Plots</dt>'+
+  '<dd>- white cold drink</dd> </dl>' );
  }
 
 var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
@@ -443,31 +436,15 @@ function rv2_f(feature, layer) {
 
 
 function crop_popup(feature, layer) {
-  layer.bindPopup('<div class="tabs">' +
-
-'<div class="tab" id="tab-1">' +
-'<div class="content">' +
-'<b>Crops/Fertilizer</b>:' + feature.properties.cn + '<br> <b>Variety</b>:' 
-+ feature.properties.variety +'<br> <b>Soil Type</b>:' + feature.properties.soil 
-+'<br> <b>Village Name:</b>:' + feature.properties.village +
-'</div>' +
-
-'<div class="tab" id="tab-2">' +
-'<div class="content">' +
-'<b>Farmer Name</b>:' + feature.properties.Name + '<br> <b>Ryot Number</b>:' + feature.properties.ryot +'</div>' +
-'</div>' +
-
-'<div class="tab" id="tab-3">' +
-'<div class="content">' +
-'<b>Date of Sowing</b>:' + feature.properties.date + '<br> <b>Demostration Area (Acres)</b>:' + feature.properties.area +'</div>' +'</div>' +
-'</div>' +
-
-'<ul class="tabs-link">' +
-'<li class="tab-link"> <a href="#tab-1"><span>Demostrations</span></a></li>' +
-'<li class="tab-link"> <a href="#tab-2"><span>Ryot</span></a></li>' +
-'<li class="tab-link"> <a href="#tab-3"><span>Other</span></a></li>' +
-'</ul>' +
-'</div>');
+  layer.bindPopup('<dl> <b>Demostration Details</b> <dd> Crops/Fertilizer:'
+  + feature.properties.cn +'</dd>Variety:'+ feature.properties.variety
+  +'</dd> <dd> Soil Type:'+ feature.properties.soil + '</dd>'
+  +'</dd> <dt>Ryot Details</dt>'+
+  '<dd>Ryot Code:'+ feature.properties.ryot + '</dd>' +
+  '<dd>Farmer Name:'+ feature.properties.Name + '</dd>' +
+  '<dt>Other Information</dt>'+ 
+  '<dd>Date of Sowing:'+ feature.properties.date + '</dd>' +
+  '<dd>Demo area (in acre): '+ feature.properties.area + '</dd>');
  }
 
 
@@ -488,7 +465,7 @@ crops_demo = new L.GeoJSON.AJAX("data/crops.geojson", {
 
 
 
-
+{}
 
 
 // input data
