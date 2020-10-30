@@ -319,14 +319,29 @@ function polystyle(feature) {
 
 
 function village(feature, layer) {
-  layer.bindPopup('<dl> <b>Village Information</b> <dd> Village Name:'+ feature.properties.Name +'</dd>Village ID:'+ feature.properties.vi 
-  +'</dd> <dd> Village Area:'+ feature.properties.vi + '</dd>'
+  layer.bindPopup('<dl> <b>Village Information</b> <dd> Village Name:'+ feature.properties.name 
+  +'</dd>Village ID:'+ feature.properties.id 
+  +'</dd> <dd> Trident Area:'+ feature.properties.trident + '</dd>'
   +'</dd> <dt>Sugarcane Plots</dt>'+
-  '<dd>- white cold drink</dd> </dl>' );
+  '<dd>No.of Sugarcane Plots: 300</dd>' + '<dd>Area of Sugarcane Plots: 5000 acres</dd>'+
+  '<dt>Sugarcane Plot Status</dt>'+ 
+  '<dd>Green: 300</dd>' 
+  +'<dd>Yellow: 200</dd>' 
+  +'<dd>Red: 159</dd>' +
+  '<dt>Number of Visits</dt>'+ 
+  '<dd>0-5: 300</dd>' 
+  +'<dd>6-15: 200</dd>' 
+  +'<dd>16-30: 159</dd>' 
+  + '<dt>Number of Plots Per Season</dt>'+ 
+  '<dd>2017/18: 300</dd>' 
+  +'<dd>2018/19: 200</dd>' 
+  +'<dd>2019/20: 159</dd>' 
+  
+ );
  }
 
 var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
-         style:polystyle, onEachFeature: village});   
+         style:polystyle,onEachFeature: village});   
 
          group4.addTo(map);
 
