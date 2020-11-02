@@ -215,7 +215,7 @@
   <script>
 
 // create array for csv export
-var arr = [['Plot code','Ryot Number','Ryot Name','Ryot Village','Plot Village','Date','Time']];
+var arr = [['Plot code','Ryot Number','Ryot Name','Ryot Village','Plot Village','Date','Time','Latitude','Longtitude']];
 
 
 // style for kml
@@ -253,9 +253,12 @@ var test = layer.on("click", function (e) {
                 var ryotname = feature.properties.ryotname
                 var ryotvillage = feature.properties.ryotvillage
                 var plotvillage = feature.properties.plotvillage
+                var cord = e.latlng
+                var lat = ([Object.values(cord)[0]]); //returns 'someVal'
+                var long = ([Object.values(cord)[1]]); //returns 'someVal'
                 var time = new Date().toLocaleString();
                 var date = new Date().toLocaleDateString();
-                arr.push([name,ryot,ryotname,ryotvillage,plotvillage,time]);
+                arr.push([name,ryot,ryotname,ryotvillage,plotvillage,time,lat,long]);
                 var nkml = arr.length - 1; 
                 var person = prompt("Are you done finishing collecting data?" + " Number of plots visited/to visit today:" + nkml);
                 if (person == "yes") {
