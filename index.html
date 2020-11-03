@@ -218,6 +218,16 @@
 var arr = [['Plot code','Ryot Number','Ryot Name','Ryot Village','Plot Village','Date','Time','Latitude','Longtitude']];
 
 
+function onPopupOpen(e) {
+  // check if you it is okay for the popup to open - if not, close it.
+  if (!enablePopups.checked) {
+    // "this" refers to the marker object of the marker that was clicked on, whereas
+    // e.target will refer to the DOM element itself
+    this.closePopup();
+  }
+}
+
+
 // style for kml
 function sugar(feature) {
     return {
@@ -809,9 +819,9 @@ var overlayMaps = {
     "<img src='' /> Waterbodies": waterbodies,
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
-    "<img src='' /> Nutrient Data": nutrient_demo,
-    "<img src='' /> Input Data": input_demo,
-    "<img src='' /> Crop Data": crops_demo,
+    "<img src='icons/wheelbarrow.png' /> Nutrient Data": nutrient_demo,
+    "<img src='icons/input.png' /> Input Data": input_demo,
+    "<img src='icons/wheat.png' /> Crop Data": crops_demo,
     "<img src='icons/test-tube.png' /> Soil Samples": soil_sample,
     "<img src='icons/follow.png' /> Number of re": re,
     "<img src='icons/dam.png' /> Check Dams/Percolation Tanks": dam
@@ -926,6 +936,7 @@ function addPopup(layer) {
     var uae2 = long.toString(2);
     var cord = "Latitude <br> " + uae1 + " <br> Longitude <br> " + uae2
     layer.bindTooltip(cord).openTooltip();
+
 
 
 
