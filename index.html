@@ -216,6 +216,7 @@
 
 // create array for csv export
 var arr = [['Plot code','Ryot Number','Ryot Name','Ryot Village','Plot Village','Date','Time','Latitude','Longtitude']];
+var borewell_data = [['SI Number','District','Source Of','Crop Data','Date','Time','Latitude','Longtitude']];
 
 
 function onPopupOpen(e) {
@@ -735,11 +736,60 @@ sp = new L.GeoJSON.AJAX("data/sp3.geojson", {
 
 // // add Borewell geojson 
 
-function bore1(feature, layer) {
-  layer.bindPopup('Sl_No:'+ feature.properties.Sl_No +'<br> District:' + feature.properties.district + '<br> Source of: '+ feature.properties.Source_of + '<br> Crops_Data: '+ feature.properties.crops_deta );
-;
+
+
+ function bore1(feature, layer) {
+  layer.bindPopup('Sl_No:'+ feature.properties.Sl_No +'<br> District:' + feature.properties.district
+   + '<br> Source of: '+ feature.properties.Source_of + '<br> Crops_Data: '
+   + feature.properties.crops_deta,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
+  );
+
+
+
+
+
+ // initialize array and export csv
+
+var test2 = layer.on("click", function (e) {
+                var name = feature.properties.Sl_No
+                var district = feature.properties.district
+                var source = feature.properties.Source_of
+                var crops = feature.properties.crops_deta
+                var newchar = '|'
+                crops = crops.split(',').join(newchar);
+                var cord = e.latlng
+                var lat = ([Object.values(cord)[0]]); //returns 'someVal'
+                var long = ([Object.values(cord)[1]]); //returns 'someVal'
+                var time = new Date().toLocaleString();
+                var date = new Date().toLocaleDateString();
+                borewell_data.push([name,district,source,crops,time,lat,long]);
+                var nkml = borewell_data.length - 1; 
+                var person = prompt("Are you done finishing collecting data?" + " Number of borewells selected:" + nkml);
+                if (person == "yes") {
+                let csvContent = "data:text/csv;charset=utf-8," 
+                + borewell_data.map(e => e.join(",")).join("\n");
+                var encodedUri = encodeURI(csvContent);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                var filename = date + '.csv'
+                link.setAttribute("download", filename);
+                document.body.appendChild(link); // Required for FF
+                link.click();
+
+  }
+
+                
+
+
+
+                
+            }); 
+
  }
 
+
+ 
  var bi = new L.Icon({
   iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -749,6 +799,11 @@ function bore1(feature, layer) {
   shadowSize: [41, 41]
 });
 
+
+
+
+
+
 bore = new L.GeoJSON.AJAX("data/borewell.geojson", {
   pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: bi});
@@ -756,6 +811,9 @@ bore = new L.GeoJSON.AJAX("data/borewell.geojson", {
   onEachFeature: bore1
 })//.addTo(map);
 
+
+
+                
 
 
 
