@@ -643,7 +643,7 @@ function kar(feature, layer) {
 
     };
 }
-  var kml2 = new L.GeoJSON.AJAX("data/unit2_kml_oct_v2.geojson",{
+  var kml2 = new L.GeoJSON.AJAX("data/unit2_kml_oct_status.geojson",{
          style:sugar1, onEachFeature: kml_name2});   
 
          //kml2.addTo(map);
@@ -725,7 +725,7 @@ function visits(feature) {
   layer.bindPopup('Sunken Pits <br>' + 'S_No:' + feature.properties.si + '<br>' + 'Volume:' + feature.properties.volume + ' m3</br>'+ 'Date of Construction:' + feature.properties.date );
 }
 
-sp = new L.GeoJSON.AJAX("data/sp3.geojson", {
+sp = new L.GeoJSON.AJAX("data/sunken_pits.geojson", {
   pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {icon: sp_icon});
     },
