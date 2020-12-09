@@ -358,6 +358,24 @@ var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
          group4.addTo(map);
 
 
+
+    function rstyle(feature) {
+    return {
+        fillColor: 'white',
+        weight: 2,
+        opacity: 1,
+        color: 'blue',  //Outline color
+        fillOpacity: 0.1
+    };
+}
+        
+
+
+var radius = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/radius.geojson",{
+         style:rstyle});   
+
+         radius.addTo(map);
+
 // Locate me function using GPS
 
 
@@ -721,7 +739,8 @@ function visits(feature) {
 
 
          function onEachFeature1(feature, layer) {
-  layer.bindPopup('Sunken Pits <br>' + 'S_No:' + feature.properties.si + '<br>' + 'Volume:' + feature.properties.volume + ' m3</br>'+ 'Date of Construction:' + feature.properties.date );
+  layer.bindPopup('Sunken Pits <br>' + 'S_No:' + feature.properties.si 
+  + '<br>' + 'Volume:' + feature.properties.volume + ' m3</br>'+ 'Date of Construction:' + feature.properties.date );
 }
 
 sp = new L.GeoJSON.AJAX("data/sunken_pits.geojson", {
@@ -860,6 +879,41 @@ var re = new L.GeoJSON.AJAX("data/re.geojson", {
 //map.addLayer(re);
      
   
+
+
+// style for op
+function op(feature) {
+    return {
+        fillColor: 'red',
+        color: 'red'  //Outline color
+    };
+}
+
+
+
+
+function kml_name4(feature, layer) {
+  layer.bindPopup("Plot Code:" + feature.properties.new_name + '<br> Status:' + feature.properties.status + '<br>' + 'Ryot Number:' + feature.properties.Name + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
+  );
+
+  var test = layer.on("click", function (e) {
+                kml.setStyle(op); //resets layer colors
+                
+            }); 
+
+ }
+
+  var op2 = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/plots.geojson",{
+         style:op, onEachFeature: kml_name4});   
+
+         op2.addTo(map);
+
+
+
+
+
 // Layer Control
 
 var overlayMaps = {
@@ -874,6 +928,7 @@ var overlayMaps = {
     "<img src='' /> Waterbodies": waterbodies,
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
+    "<img src='' /> Sugarcane Plots": kml,
     "<img src='icons/wheelbarrow.png' /> Nutrient Data": nutrient_demo,
     "<img src='icons/input.png' /> Input Data": input_demo,
     "<img src='icons/wheat.png' /> Crop Data": crops_demo,
