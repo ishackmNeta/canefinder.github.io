@@ -371,10 +371,10 @@ var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
         
 
 
-var radius = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/radius.geojson",{
+var radius1 = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/radius.geojson",{
          style:rstyle});   
 
-         radius.addTo(map);
+         radius1.addTo(map);
 
 // Locate me function using GPS
 
@@ -929,7 +929,7 @@ var overlayMaps = {
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
     "<img src='' /> Sugarcane Plots": kml,
-    "<img src='' /> Current Radius": radius,
+    "<img src='' /> Current Radius": radius1,
     "<img src='icons/wheelbarrow.png' /> Nutrient Data": nutrient_demo,
     "<img src='icons/input.png' /> Input Data": input_demo,
     "<img src='icons/wheat.png' /> Crop Data": crops_demo,
