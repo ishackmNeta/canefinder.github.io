@@ -371,7 +371,7 @@ var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
         
 
 
-var radius = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/radius.geojson",{
+var radius = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/radius.geojson",{
          style:rstyle});   
 
          radius.addTo(map);
@@ -905,7 +905,7 @@ function kml_name4(feature, layer) {
 
  }
 
-  var op2 = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/plots.geojson",{
+  var op2 = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/plots.geojson",{
          style:op, onEachFeature: kml_name4});   
 
          op2.addTo(map);
