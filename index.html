@@ -42,6 +42,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
 <script src="js/leaflet.draw.js"></script>
 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.css"/>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/measure/leaflet.measure.css" />
 <script src="css/measure/leaflet.measure.js"></script>
 
@@ -51,6 +54,11 @@
 
     <link rel="stylesheet" href="css/leaflet-legend.css"/>
     <script src="js/leaflet-legend.js"></script>
+    <script src="SliderControl.js"></script>
+
+    <link rel="stylesheet" href="L.Control.Layers.Tree.css"/>
+    <script src="L.Control.Layers.Tree.js"></script>
+
    
 
 
@@ -252,6 +260,8 @@ var highlight = {
 
 
 
+
+
  // initialize array and export csv
 
 var test = layer.on("click", function (e) {
@@ -371,14 +381,10 @@ var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
         
 
 
-function network2(feature, layer) {
-  layer.bindPopup(feature.properties.radius + 'm radius');
- }
+var radius = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/radius.geojson",{
+         style:rstyle});   
 
-var radius1 = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/radius.geojson",{
-         style:rstyle,onEachFeature:network2});   
-
-         radius1.addTo(map);
+         //radius.addTo(map);
 
 // Locate me function using GPS
 
@@ -476,7 +482,40 @@ function rv2_f(feature, layer) {
 
 
 
+// sunken pit buffer
 
+
+var b_style = {
+    "color": "#808000",
+    "weight": 5,
+    "opacity": 0.65
+};
+
+
+var spb = new L.GeoJSON.AJAX("data/buffer_SP_50_v2.geojson",{
+style:b_style});   
+
+//spb.addTo(map);
+
+
+
+var o_style = {
+    "color": "red",
+    "weight": 5,
+    "opacity": 0.65
+};
+
+
+function indis(feature, layer) {
+  layer.bindPopup("Plot Code:" + feature.properties.new_name + '<br>' + 'Ryot Number:' + feature.properties.ryot + '</br>' + 'Ryot Name:' + feature.properties.ryotname + '</br>'
+  + 'Ryot Village:' + feature.properties.ryotvillage + '<br> Plot Village:' + feature.properties.plotvillage,
+  {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false});
+ }
+
+var water1 = new L.GeoJSON.AJAX("data/overlap_water.geojson",{
+style:o_style,onEachFeature: indis});   
+
+//water1.addTo(map);
 
 
 // crops data
@@ -649,6 +688,7 @@ function kar(feature, layer) {
   {closeButton: true, closePopupOnClick:false,closeOnClick:false,autoClose:false},
   );
 
+  
   var test = layer.on("click", function (e) {
                 kml.setStyle(sugar); //resets layer colors
                 
@@ -882,7 +922,8 @@ var re = new L.GeoJSON.AJAX("data/re.geojson", {
   });
 //map.addLayer(re);
      
-  
+
+
 
 
 // style for op
@@ -909,13 +950,13 @@ function kml_name4(feature, layer) {
 
  }
 
-  var op2 = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/plots.geojson",{
+  var op2 = new L.GeoJSON.AJAX("http://netaapi.pythonanywhere.com/static/plots.geojson",{
          style:op, onEachFeature: kml_name4});   
 
-         op2.addTo(map);
+         //op2.addTo(map);
 
 
-
+         var bufferm = L.layerGroup([spb,water1]);
 
 
 // Layer Control
@@ -933,7 +974,7 @@ var overlayMaps = {
     "<img src='' /> Sugarcane Plot Status": kml2,
     "<img src='' /> Number of Visits": kml3,
     "<img src='' /> Sugarcane Plots": kml,
-    "<img src='' /> Current Radius": radius1,
+    "<img src='' /> Bufferzone": bufferm,
     "<img src='icons/wheelbarrow.png' /> Nutrient Data": nutrient_demo,
     "<img src='icons/input.png' /> Input Data": input_demo,
     "<img src='icons/wheat.png' /> Crop Data": crops_demo,
@@ -947,6 +988,7 @@ var overlayMaps = {
 
 
 
+
 var baseLayers = {
 			"OSM Mapnik": osmMap,
 			"Stamen Toner": original
@@ -954,7 +996,71 @@ var baseLayers = {
 	  
 		 //Add baseLayers to map as control layers
 
-L.control.layers(baseLayers, overlayMaps).addTo(map);
+//L.control.layers(baseLayers, overlayMaps).addTo(map);
+
+
+
+
+var overlaysTree = {
+    label: 'Layer Options',
+    children: [
+        {
+            label: 'Please select your layers',
+            selectAllCheckbox: false,
+            children: [
+                {
+                    label: 'France',
+                    selectAllCheckbox: false,
+                    children: [
+                        { label: "<img src='icons/wheelbarrow.png' /> Nutrient Data", layer: original },
+                        { label: 'Notre Damse', layer: osmMap },
+                    ]
+                }, 
+                
+
+                
+                
+            ]
+
+
+            
+            
+        }, 
+         {
+            label: 'Asia',
+            selectAllCheckbox: true,
+            children: [
+                {
+                    label: 'Jordan',
+                    selectAllCheckbox: true,
+                    children: [
+                        { label: 'Petra', layer: L.marker([30.3292215, 35.4432464]) },
+                        { label: 'Wadi Rum', layer: L.marker([29.6233486, 35.4390656]) }
+                    ]
+                }, 
+
+                
+                {
+                    label: 'Jordan2',
+                    selectAllCheckbox: true,
+                    children: [
+                        { label: 'Petra', layer: L.marker([30.3292215, 35.4432464]) },
+                        { label: 'Wadi Rum', layer: L.marker([29.6233486, 35.4390656]) }
+                    ]
+                }
+                
+                
+                
+               
+            ]
+        }
+    ]
+}
+
+
+
+
+L.control.layers.tree(baseLayers, overlaysTree).addTo(map);
 
 
 
@@ -1090,9 +1196,6 @@ function addPopup(layer) {
   L.marker(event.latlng,{icon:red}).bindPopup(event.latlng.toString()).addTo(map);});
 	  // done
 	  
-	  
-	  
-
 
 
 
