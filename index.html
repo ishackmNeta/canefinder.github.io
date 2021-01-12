@@ -371,8 +371,12 @@ var group4 = new L.GeoJSON.AJAX("data/village.geojson",{
         
 
 
+function network2(feature, layer) {
+  layer.bindPopup(feature.properties.radius + 'm radius');
+ }
+
 var radius1 = new L.GeoJSON.AJAX("https://netaapi.pythonanywhere.com/static/radius.geojson",{
-         style:rstyle});   
+         style:rstyle,onEachFeature:network2});   
 
          radius1.addTo(map);
 
