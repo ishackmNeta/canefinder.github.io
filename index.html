@@ -1002,18 +1002,18 @@ var baseLayers = {
 
 
 var overlaysTree = {
-    label: 'Layer Options',
+    label: '<b>Layer Options</b>',
     children: [
         {
-            label: 'Please select your basemap layers',
+            label: 'Please select your basemap layer',
             selectAllCheckbox: false,
             children: [
                 {
-                    label: 'France',
+                    label: '<b>BaseMap Layer</b>',
                     selectAllCheckbox: false,
                     children: [
-                        { label: "<img src='icons/wheelbarrow.png' /> Nutrient Data", layer: original },
-                        { label: 'Notre Damse', layer: osmMap },
+                        { label: "Stamen Toner", layer: original },
+                        { label: 'OSM Mapnik', layer: osmMap },
                     ]
                 }, 
                 
@@ -1027,30 +1027,76 @@ var overlaysTree = {
             
         }, 
          {
-            label: 'Asia',
-            selectAllCheckbox: true,
+            label: '<b>Data Layers</b>',
+            selectAllCheckbox: false,
             children: [
                 {
-                    label: 'Jordan',
-                    selectAllCheckbox: true,
+                    label: '<b>Rivers</b>',
+                    selectAllCheckbox: false,
                     children: [
-                        { label: 'Petra', layer: L.marker([30.3292215, 35.4432464]) },
-                        { label: 'Wadi Rum', layer: L.marker([29.6233486, 35.4390656]) }
+                        { label: "<img src='icons/purple.png' /> Trident Main River", layer: group1 },
+                        { label:  "<img src='icons/orange.png' /> Stream Network 2 Hectare", layer: group3 },
+                        { label: "<img src='icons/yellow.png' /> Narinjavagu River", layer: group2}
                     ]
                 }, 
 
                 
                 {
-                    label: 'Jordan2',
+                    label: '<b>Sugarcane Plots </b>',
+                    selectAllCheckbox: false,
+                    children: [
+                        { label: "<img src='' /> Sugarcane Plots", layer: kml },
+                        { label:  "<img src='' /> Sugarcane Plot Status", layer: kml2 },
+                        { label: "<img src='' /> Number of Visits", layer: kml3}
+                    ]
+                },
+                
+
+
+                {
+                    label: '<b> Ground Data </b>',
+                    selectAllCheckbox: false,
+                    children: [
+                        { label: "<img src='icons/wheelbarrow.png' /> Nutrient Data",layer: nutrient_demo },
+                        { label: "<img src='icons/input.png' /> Input Data", layer: input_demo },
+                        { label: "<img src='icons/test-tube.png' /> Soil Samples", layer: soil_sample },
+                        { label:   "<img src='icons/wheat.png' /> Crop Data", layer: crops_demo}
+                    ]
+                },
+
+
+                {
+                    label: '<b> Sunken Pits, Borewells and Water Structures </b>',
+                    selectAllCheckbox: false,
+                    children: [
+                        { label:   "<img src='icons/dig.png' /> Sunken Pits",layer: sp },
+                        { label:     "<img src='icons/dam.png' /> Check Dams/Percolation Tanks", layer: dam },
+                        { label:     "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png' /> Borewells", layer: bore },
+                        { label:    "<img src='' /> Waterbodies", layer: waterbodies}
+                    ]
+                },
+
+                {
+                    label: '<b> Buffer Zones </b>',
                     selectAllCheckbox: true,
                     children: [
-                        { label: 'Petra', layer: L.marker([30.3292215, 35.4432464]) },
-                        { label: 'Wadi Rum', layer: L.marker([29.6233486, 35.4390656]) }
+                        { label:    "<img src='' /> 50 Km Sunken Pit",layer: bufferm },  
+                     
+                    ]
+                },
+
+                {
+                    label: '<b> Other Layers </b>',
+                    selectAllCheckbox: false,
+                    children: [
+                        { label:    "<img src='icons/pink.png' /> Trident Basin",layer: base1 },  
+                        { label:    "<img src='icons/road.png' /> Major Road Network",layer: roads },                      
+                        { label:     "<img src='icons/follow.png' /> Number of re",layer: re }                       
+                     
                     ]
                 }
                 
-                
-                
+              
                
             ]
         }
