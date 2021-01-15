@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "kml1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "s_no": 1, "activity": "Check dam", "village": "Kothoor B", "latitude": 17.724167, "Longitude": 77.587776, "Location": "Point - A", "length": 90, "width": 11.5, "depth": 0.9, "volume": 932, "id": 4, "file": "kml1", "Name": "2000037089_sugar_dripwet_6_2019.kml", "descriptio": "Perimeter: 306.91 m. Area: 1.401 Acre.", "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null, "stroke": "#ff0000", "stroke_opa": 1, "stroke_wid": 2, "fill": "#00FF00", "fill_opaci": 0.33333333333333331, "new_name": 2000037089, "ryot": 60005296, "ryotname": "BAKKAPPA .B .", "ryotvillage": "KOTHUR-B", "plotvillage": "KOTHUR-B" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 77.586614674535355, 17.723939185913295 ], [ 77.586470777965687, 17.724006326490077 ], [ 77.586455944129426, 17.724020035503429 ], [ 77.586535848677158, 17.723978042785301 ], [ 77.586614674535355, 17.723939185913295 ] ] ] ] } }
+]
+}

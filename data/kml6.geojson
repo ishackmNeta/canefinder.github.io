@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "kml6",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "fid": 1, "s_no": 6, "activity": "Percolation tank", "village": "Kothoor B", "latitude": 17.724443, "Longitude": 77.58722, "Location": "Point - A", "length": 37, "width": 11.5, "depth": 1.1, "volume": 468, "id": 5, "file": "kml6", "Name": "2000037089_sugar_dripwet_6_2019.kml", "descriptio": "Perimeter: 306.91 m. Area: 1.401 Acre.", "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null, "stroke": "#ff0000", "stroke_opa": 1, "stroke_wid": 2, "fill": "#00FF00", "fill_opaci": 0.33333333333333331, "new_name": 2000037089, "ryot": 60005296, "ryotname": "BAKKAPPA .B .", "ryotvillage": "KOTHUR-B", "plotvillage": "KOTHUR-B" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ 77.586374948708823, 17.724054865386488 ], [ 77.586324526509927, 17.724029128191038 ], [ 77.586034429651789, 17.723979904095426 ], [ 77.585911166125072, 17.723996421129456 ], [ 77.585914917290211, 17.724005827274055 ], [ 77.585952468216419, 17.724085029011416 ], [ 77.58600041270256, 17.724177324540271 ], [ 77.586077190935612, 17.724171895392814 ], [ 77.586175762116909, 17.724145388376485 ], [ 77.586255893111229, 17.724116645824232 ], [ 77.586360163986683, 17.724061076876787 ], [ 77.586374948708823, 17.724054865386488 ] ] ] ] } }
+]
+}

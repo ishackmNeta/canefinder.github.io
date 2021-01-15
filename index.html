@@ -517,6 +517,31 @@ style:o_style,onEachFeature: indis});
 
 //water1.addTo(map);
 
+// check dam buffer
+
+var kml1 = new L.GeoJSON.AJAX("data/kml1.geojson",{
+style:o_style,onEachFeature: indis});   
+
+var kml6 = new L.GeoJSON.AJAX("data/kml6.geojson",{
+style:o_style,onEachFeature: indis});   
+
+var kml10 = new L.GeoJSON.AJAX("data/kml10.geojson",{
+style:o_style,onEachFeature: indis});   
+
+
+var b1 = new L.GeoJSON.AJAX("data/buffer1.geojson",{
+style:b_style});   
+
+var b6 = new L.GeoJSON.AJAX("data/buffer6.geojson",{
+style:b_style});   
+
+var b10 = new L.GeoJSON.AJAX("data/buffer10.geojson",{
+style:b_style});   
+
+
+var bufferm1 = L.layerGroup([b1,kml1]);
+var bufferm6 = L.layerGroup([b6,kml6]);
+var bufferm10 = L.layerGroup([b10,kml10]);
 
 // crops data
 
@@ -1081,6 +1106,10 @@ var overlaysTree = {
                     selectAllCheckbox: true,
                     children: [
                         { label:    "<img src='' /> 50 Km Sunken Pit",layer: bufferm },  
+                        { label:    "<img src='' /> 100 Km Check Dam_S1",layer: bufferm1 },  
+                        { label:    "<img src='' /> 100 Km Check Dam_S6",layer: bufferm6 },  
+                        { label:    "<img src='' /> 100 Km Check Dam_S10",layer: bufferm10 },  
+
                      
                     ]
                 },
