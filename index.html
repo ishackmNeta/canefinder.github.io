@@ -1271,7 +1271,7 @@ function onMapClick(e) {
 
 
 //getting json function
-$(document).ready(function(){
+jQuery(document).ready(function(){
   $.ajax({
     url: "https://api.openweathermap.org/data/2.5/weather?lat=" + e.latlng.lat + '&lon=' + e.latlng.lng + "&appid=74adc293e79c9b63b53db93537130882",
     dataType: 'json',
