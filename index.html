@@ -729,13 +729,20 @@ function kar(feature, layer) {
 
     };
 }
+
+
+     function fn(feature) {
+                return feature.properties.status === "red";
+          }
+
   var kml2 = new L.GeoJSON.AJAX("data/unit2_kml_oct_status.geojson",{
-         style:sugar1, onEachFeature: kml_name2});   
+         style:sugar1, onEachFeature: kml_name2,filter:fn});   
 
          //kml2.addTo(map);
 
 
 
+        
 
 
 // add Number of Visits geojson (Fake Data)
